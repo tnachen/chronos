@@ -20,8 +20,8 @@ object TaskUtils {
   private[this] val log = Logger.getLogger(getClass.getName)
 
   //TaskIdFormat: ct:JOB_NAME:DUE:ATTEMPT
-  val taskIdTemplate = "ct:%d:%d:%s"
-  val taskIdPattern = """ct:(\d+):(\d+):%s""".format(JobUtils.jobNamePattern).r
+  val taskIdTemplate = "ct-%d-%d-%s"
+  val taskIdPattern = """ct-(\d+)-(\d+)-%s""".format(JobUtils.jobNamePattern).r
 
   def getTaskId(job: BaseJob, due: DateTime, attempt: Int = 0): String = {
    taskIdTemplate.format(due.getMillis, attempt, job.name)
